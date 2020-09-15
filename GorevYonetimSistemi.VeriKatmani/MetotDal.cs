@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,24 +12,14 @@ namespace GorevYonetimSistemi.VeriKatmani
     {
         public List<KullaniciTurModel> KullaniciTurListe(int kisiId, int kullaniciTurId)
         {
-
             using (EntityContext context = new EntityContext())
             {
-                var kullaniciTurListe = (from i in context.KullaniciTurleri
-                                         join c in context.KullaniciTurAtamalar
-                                             on i.KullaniciTurId
-                                             equals c.FkKullaniciTurId
-                                         join k in context.Kullanicilar on c.FkKisiId equals k.KisiId
-                                         where c.FkKisiId == kisiId && c.FkKullaniciTurId == kullaniciTurId
-                                         select new KullaniciTurModel()
-                                         {
-                                             AdSoyad = k.Ad + " " + k.Soyad,
-                                             KullaniciTur = i.KullaniciTurAd,
-                                             Fotograf = k.Fotograf
-                                         });
+                SqlParameter parameter1 = new SqlParameter("@KisiId", kisiId);
+                SqlParameter parameter2 = new SqlParameter("@KullaniciTurId", kullaniciTurId);
 
+                var kullaniciTurListe = context.Database.SqlQuery<KullaniciTurModel>(
+                    "KullaniciTurListe @KisiId,@KullaniciTurId", parameter1, parameter2);
                 return kullaniciTurListe.ToList();
-
             }
         }
 
@@ -36,56 +27,41 @@ namespace GorevYonetimSistemi.VeriKatmani
         {
             using (EntityContext context = new EntityContext())
             {
-                var kullaniciGorevListesi = (from i in context.Atamalar join c in context.Kullanicilar on i.FkKisiId equals c.KisiId
-                    join a in context.Kullanicilar on i.FkAtayanKisiId equals a.KisiId  
-                                             select new GorevAtama()
-                                             {
-                                                 AtananKisi =a.Ad,
-                                                 AtayanKisi = c.Ad
-                                             });
-
-                return kullaniciGorevListesi.ToList();
+                var kullaniciGorevListesi = context.Database.SqlQuery<GorevAtama>("GorevAtamaListesi").ToList();
+                return kullaniciGorevListesi;
             }
         }
 
-        public List<object> ToplantiDetay()
+        public List<ToplantiDetayModel> ToplantiDetay()
         {
             using (EntityContext context = new EntityContext())
             {
-                IQueryable<object> toplantiDetayListesi = (from i in context.ToplantiDetaylar
-                    join p in context.Toplantilar on i.FkToplantiId equals p.ToplantiId
-                    select new
-                    {
-                        ToplantiDetayId = i.ToplantiDetayId,
-                        ToplantiId = p.ToplantiId,
-                        ToplantiAdi = p.ToplantiAdi,
-                        ToplantiDurum = i.ToplantiDurum,
-                        AlinanKararlar = i.AlinanKararlar
-                    });
-                List<object> liste = new List<object>(toplantiDetayListesi);
-                return liste;
+                var toplantiDetayListe = context.Database.SqlQuery<ToplantiDetayModel>("ToplantiDetayListe").ToList();
+
+                return toplantiDetayListe;
+            }
+        }
+        
+        public List<ToplantiAtamaModel> ToplantiAtama()
+        {
+            using (EntityContext context = new EntityContext())
+            {
+                var toplantiAtamaListe = context.Database.SqlQuery<ToplantiAtamaModel>("ToplantiAtamaListe").ToList();
+                return toplantiAtamaListe;
             }
         }
 
-        public List<object> ToplantiAtama()
+        public List<ToplantiModel> ToplantiListele(int kisiId)
         {
             using (EntityContext context = new EntityContext())
             {
-                IQueryable<object> toplantiAtama = (from i in context.ToplantiAtama
-                    join k in context.Kullanicilar on i.FkAtayanKisiId equals k.KisiId
-                    join p in context.Kullanicilar on i.FkIlgiliKisiId equals p.KisiId
-                    join t in context.Toplantilar on i.FkToplantiId equals t.ToplantiId
-                    select new
-                    {
-                        ToplantiAdi = t.ToplantiAdi,
-                        IlgiliKisiler = p.Ad + " " + p.Soyad,
-                        AtayanKisi = k.Ad + " " + k.Soyad
-                    });
+                SqlParameter parameter1 = new SqlParameter("@KisiId", kisiId);
 
-                List<object> liste = new List<object>(toplantiAtama);
-                return liste;
+                var kisiToplantiListe = context.Database.SqlQuery<ToplantiModel>("KisiToplantiListe @kisiId", parameter1)
+                    .OrderByDescending(p => p.SonTarihSaat).Take(5);
+
+                return kisiToplantiListe.ToList();
             }
-
         }
 
 

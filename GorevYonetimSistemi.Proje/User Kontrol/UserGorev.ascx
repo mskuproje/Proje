@@ -242,6 +242,7 @@
                                             class="table table-striped table-bordered nowrap">
                                             <thead>
                                                 <tr>
+                                                    <th>Görev Adi</th>
                                                     <th>Atanan Kişi</th>
                                                     <th>Atayan Kişi</th>
                                                 </tr>
@@ -250,7 +251,7 @@
                                                 <asp:ListView runat="server" ID="lvGorevAtama">
                                                     <ItemTemplate>
                                                         <tr>
-
+                                                            <td><%#Eval("GorevAdi") %></td>
                                                             <td><%#Eval("AtananKisi") %></td>
                                                             <td><%#Eval("AtayanKisi") %></td>
                                                         </tr>

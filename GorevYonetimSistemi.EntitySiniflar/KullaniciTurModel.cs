@@ -10,7 +10,7 @@ namespace GorevYonetimSistemi.EntitySiniflar
     {
         
         public string AdSoyad { get; set; }
-        public string KullaniciTur { get; set; }
+        public string KullaniciTurAd { get; set; }
         public string Fotograf { get; set; }
 
 

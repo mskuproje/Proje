@@ -30,6 +30,5 @@ namespace GorevYonetimSistemi.VeriKatmani
         public DbSet<KullaniciTurAtama> KullaniciTurAtamalar { get; set; }
         public DbSet<ToplantiAtama> ToplantiAtama { get; set; }
 
-       
     }
 }

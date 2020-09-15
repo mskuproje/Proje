@@ -43,7 +43,7 @@ namespace GorevYonetimSistemi.Proje.Site
                         //Response.Redirect("/" + kullaniciTur + "/" + url);
                         foreach (var kullaniciTurModel in metot)
                         {
-                            Session["KullaniciTur"] = kullaniciTurModel.KullaniciTur;
+                            Session["KullaniciTur"] = kullaniciTurModel.KullaniciTurAd;
                             Session["AdSoyad"] = kullaniciTurModel.AdSoyad;
                             Session["KullaniciId"] = kullanici.KisiId;
                             Session["Fotograf"] = kullaniciTurModel.Fotograf;
