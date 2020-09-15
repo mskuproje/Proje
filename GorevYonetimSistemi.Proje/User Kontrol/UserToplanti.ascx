@@ -1,4 +1,6 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" ClientIDMode="Static" CodeBehind="UserToplanti.ascx.cs" Inherits="GorevYonetimSistemi.Proje.User_Kontrol.UserToplanti" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UserToplanti.ascx.cs" Inherits="GorevYonetimSistemi.Proje.User_Kontrol.UserToplanti" %>
+<%@ Import Namespace="System.Diagnostics.Eventing.Reader" %>
+
 
 <div class="row">
     <div class="col-sm-12">
@@ -39,14 +41,14 @@
                                     <h5>Toplantı Ekle</h5>
                                 </div>
                                 <div class="card-block">
-                                    <form id="main4" method="post"
+                                    <form id="main2" method="post"
                                         novalidate>
                                         <div class="form-group row">
                                             <div class="col-sm-4">
                                                 <input type="hidden"
                                                     class="form-control"
                                                     name="toplantiId"
-                                                    id="toplantiId" runat="server" />
+                                                    id="toplantiId">
                                                 <span class="messages"></span>
                                             </div>
                                         </div>
@@ -59,7 +61,7 @@
                                                 <input type="text"
                                                     class="form-control max-width"
                                                     name="toplantiAdi"
-                                                    id="tbxToplantiAdi" runat="server" />
+                                                    id="toplantiAdi">
                                                 <span class="messages"></span>
                                             </div>
                                         </div>
@@ -72,7 +74,7 @@
                                                 <input type="text"
                                                     class="form-control max-width"
                                                     name="toplantiKonusu"
-                                                    id="tbxToplantiKonusu" runat="server" />
+                                                    id="toplantiKonusu">
                                                 <span class="messages"></span>
                                             </div>
                                         </div>
@@ -82,10 +84,10 @@
                                 İçeriği
                                             </label>
                                             <div class="col-sm-4">
-                                                <textarea name="toplantiIcerigi" id="taToplantiIcerigi"
+                                                <textarea name="toplantiIcerigi" id="toplantiIcerigi"
                                                     cols="70"
                                                     rows="10"
-                                                    class="form-control max-width" runat="server"></textarea>
+                                                    class="form-control max-width"></textarea>
                                                 <span class="messages"></span>
                                             </div>
                                         </div>
@@ -99,7 +101,7 @@
                                                 <input type="text"
                                                     class="form-control max-width"
                                                     name="toplantiTarihi"
-                                                    id="tbxToplantiTarihi" runat="server" />
+                                                    id="toplantiTarihi">
                                                 <span class="messages"></span>
                                             </div>
                                         </div>
@@ -112,7 +114,7 @@
                                                 <input type="text"
                                                     class="form-control max-width"
                                                     name="toplantiSaati"
-                                                    id="tbxToplantiSaati" runat="server" />
+                                                    id="toplantiSaati">
                                                 <span class="messages"></span>
                                             </div>
                                         </div>
@@ -125,32 +127,30 @@
                                                 <input type="text"
                                                     class="form-control max-width"
                                                     name="toplantiYeri"
-                                                    id="tbxToplantiYeri" runat="server" />
+                                                    id="toplantiYeri">
                                                 <span class="messages"></span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-sm-2 label label-success" id="lblSonuc" runat="server" visible="False"></label>
-                                            <div class="col-sm-6 ml-5">
-
+                                            <label class="col-sm-2"></label>
+                                            <div class="col-sm-6">
                                                 <button type="submit"
-                                                    class="btn btn-primary m-b-0" runat="server" id="btnKaydet" onserverclick="btnKaydet_OnServerClick">
+                                                    class="btn btn-primary m-b-0">
                                                     Kaydet
                                                 </button>
-                                                <button class="btn waves-effect waves-light btn-danger btn-square" type="button" id="btnSil" runat="server" onserverclick="btnSil_OnServerClick">
+                                                <button class="btn waves-effect waves-light btn-danger btn-square">
                                                     Sil
                                                 </button>
-                                                <button class="btn waves-effect waves-light btn-warning btn-square" type="button" id="btnGuncelle" runat="server" onserverclick="btnGuncelle_OnServerClick">
+                                                <button class="btn waves-effect waves-light btn-warning btn-square">
                                                     Güncelle
                                                 </button>
-                                                <button type="button" id="ToplantiAtamaTemizle" class="btn waves-effect waves-light btn-secondary btn-square" onclick="toplantiTemizle()">
+                                                <button id="ToplantiAtamaTemizle" class="btn waves-effect waves-light btn-secondary btn-square">
                                                     Temizle
                                                 </button>
                                             </div>
                                         </div>
                                     </form>
                                 </div>
-
                             </div>
                             <div class="card">
                                 <div class="card-header">
@@ -158,7 +158,7 @@
                                 </div>
                                 <div class="card-block">
                                     <div class="dt-responsive table-responsive">
-                                        <table id="colum-rendr"
+                                        <table id="row-delete"
                                             class="table table-striped table-bordered nowrap">
                                             <thead>
                                                 <tr>
@@ -180,6 +180,7 @@
                                                             <td><%#Eval("SonTarihSaat","{0:dd/MM/yyyy}") %></td>
                                                             <td><%#Eval("SonTarihSaat","{0:hh.mm tt}") %></td>
                                                             <td><%#Eval("Yer") %></td>
+
                                                         </tr>
                                                     </ItemTemplate>
                                                 </asp:ListView>
@@ -209,7 +210,7 @@
                                                 <input type="hidden"
                                                     class="form-control"
                                                     name="toplantiDetayId"
-                                                    id="toplantiDetayId" runat="server" />
+                                                    id="toplantiDetayId">
                                                 <span class="messages"></span>
                                             </div>
                                         </div>
@@ -219,7 +220,15 @@
                                 Adı
                                             </label>
                                             <div class="col-sm-4">
-                                                <select class="js-example-data-array" id="selectToplantiDetayTa" name="selectToplantiDetayTa" runat="server">
+                                                <select class="js-example-data-array " id="selectToplantiDetayTA">
+                                                    <option value="Seçiniz Lorem ipsum
+                                        dolor sit amet.">Seçiniz Lorem ipsum
+                                        dolor sit amet.
+                                                    </option>
+                                                    <option value="Staj Komisyonu">Staj Komisyonu
+                                                    </option>
+                                                    <option value="Toplantı 2">Toplantı 2
+                                                    </option>
                                                 </select>
                                             </div>
                                         </div>
@@ -259,7 +268,7 @@
                                                     name="toplantiKonusu"
                                                     id="toplantiSonAlKarar"
                                                     cols="70" rows="10"
-                                                    class="form-control max-width" runat="server"></textarea>
+                                                    class="form-control max-width"></textarea>
                                                 <span class="messages"></span>
                                             </div>
                                         </div>
@@ -267,17 +276,17 @@
                                         <div class="form-group row">
                                             <label class="col-sm-2"></label>
                                             <div class="col-sm-6">
-                                                <button type="button"
-                                                    class="btn btn-primary m-b-0" runat="server" id="btnDetayKaydet" onserverclick="btnDetayKaydet_OnServerClick">
+                                                <button type="submit"
+                                                    class="btn btn-primary m-b-0">
                                                     Kaydet
                                                 </button>
-                                                <button type="button" class="btn waves-effect waves-light btn-danger btn-square" runat="server" id="btnDetaySil" onserverclick="btnDetaySil_OnServerClick">
+                                                <button class="btn waves-effect waves-light btn-danger btn-square">
                                                     Sil
                                                 </button>
-                                                <button class="btn waves-effect waves-light btn-warning btn-square" type="button" runat="server" id="btnDetayGuncelle" onserverclick="btnDetayGuncelle_OnServerClick">
+                                                <button class="btn waves-effect waves-light btn-warning btn-square">
                                                     Güncelle
                                                 </button>
-                                                <button type="button" id="toplantiTemizle" class="btn waves-effect waves-light btn-secondary btn-square" onclick="toplantiDetayTemizle()">
+                                                <button id="toplantiTemizle" class="btn waves-effect waves-light btn-secondary btn-square">
                                                     Temizle
                                                 </button>
                                             </div>
@@ -291,7 +300,7 @@
                                 </div>
                                 <div class="card-block">
                                     <div class="dt-responsive table-responsive">
-                                        <table id="dom-jqry"
+                                        <table id="order-table"
                                             class="table table-striped table-bordered nowrap" style="width: 100%;">
                                             <thead>
                                                 <tr>
@@ -305,17 +314,17 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <asp:ListView runat="server" ID="lvToplantiDetay">
-                                                    <ItemTemplate>
-                                                        <tr>
-                                                            <td hidden><%#Eval("ToplantiDetayId") %></td>
-                                                            <td hidden><%#Eval("ToplantiId") %></td>
-                                                            <td><%#Eval("ToplantiAdi") %></td>
-                                                            <td><%#Eval("ToplantiDurum") %></td>
-                                                            <td><%#Eval("AlinanKararlar") %></td>
-                                                        </tr>
-                                                    </ItemTemplate>
-                                                </asp:ListView>
+                                            <asp:ListView runat="server" ID="lvToplantiDetay">
+                                                <ItemTemplate>
+                                                <tr>
+                                                    <td hidden><%#Eval("ToplantiDetayId") %></td>
+                                                    <td hidden><%#Eval("ToplantiId") %></td>
+                                                    <td><%#Eval("ToplantiAdi") %></td>
+                                                    <td><%#Eval("ToplantiDurum") %></td>
+                                                    <td><%#Eval("AlinanKararlar") %></td>
+                                                </tr>
+                                            </ItemTemplate>
+                                            </asp:ListView>
                                             </tbody>
                                         </table>
                                     </div>
@@ -330,27 +339,21 @@
                         <div class="col-sm-12 ">
                             <div class="card">
                                 <div class="card-block">
-                                    <div id="main">
-                                        <div class="form-group row">
-                                            <div class="col-sm-4">
-                                                <span class="messages"></span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <div class="col-sm-4">
-                                                
-                                                <textarea hidden name="tbxIlgiliKisiler" id="tbxIlgiliKisiler"
-                                                    cols="70"
-                                                    rows="10"
-                                                    class="form-control max-width" runat="server"></textarea>
-                                                
-                                                <span class="messages"></span>
-                                            </div>
-                                        </div>
+                                    <form id="main" method="post"
+                                        novalidate>
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Toplantı</label>
                                             <div class="col-sm-10">
-                                                <select class="js-example-data-array" id="selectToplantiAtamaTa" name="selectToplantiDetayTa" runat="server">
+                                                <select class="js-example-data-array ">
+                                                    <option value="Seciniz">Seçiniz Lorem ipsum
+                                        dolor.
+                                                    </option>
+                                                    <option value="1">Toplantı
+                                        1Seçiniz Lorem ipsum
+                                        dolor.
+                                                    </option>
+                                                    <option value="1">Toplantı 2
+                                                    </option>
                                                 </select>
                                             </div>
                                         </div>
@@ -360,7 +363,29 @@
                                 Kişiler
                                             </label>
                                             <div class="col-sm-10 col-xl-6 m-b-30">
-                                                <select class="test" multiple id="selectKisiler" runat="server">
+                                                <select id="custom-headers"
+                                                    class="searchable"
+                                                    multiple="multiple">
+                                                    <option value="elem_1"
+                                                        selected>elem 1
+                                                    </option>
+                                                    <option value="elem_2">elem 2
+                                                    </option>
+                                                    <option value="elem_3">elem 3
+                                                    </option>
+                                                    <option value="elem_4"
+                                                        selected>elem 4
+                                                    </option>
+                                                    <option value="elem_5">elem 5
+                                                    </option>
+                                                    <option value="elem_6">elem 6
+                                                    </option>
+                                                    <option value="elem_7">elem 7
+                                                    </option>
+                                                    <option value="elem_8">elem 8
+                                                    </option>
+                                                    <option value="elem_9">elem 9
+                                                    </option>
                                                 </select>
                                             </div>
                                         </div>
@@ -368,8 +393,8 @@
                                         <div class="form-group row">
                                             <label class="col-sm-2"></label>
                                             <div class="col-sm-6">
-                                                <button type="button"
-                                                    class="btn btn-primary m-b-0" runat="server" id="btnAtamaKaydet" onserverclick="btnAtamaKaydet_OnServerClick">
+                                                <button type="submit"
+                                                    class="btn btn-primary m-b-0">
                                                     Kaydet
                                                 </button>
                                                 <button class="btn waves-effect waves-light btn-danger btn-square">
@@ -378,12 +403,12 @@
                                                 <button class="btn waves-effect waves-light btn-warning btn-square">
                                                     Güncelle
                                                 </button>
-                                                <button type="button" id="ToplantiDetayTemizle" class="btn waves-effect waves-light btn-secondary btn-square">
+                                                <button id="ToplantiDetayTemizle" class="btn waves-effect waves-light btn-secondary btn-square">
                                                     Temizle
                                                 </button>
                                             </div>
                                         </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
 
@@ -403,15 +428,15 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <asp:ListView runat="server" ID="lvToplantiAtama">
-                                                    <ItemTemplate>
-                                                        <tr>
-                                                            <td><%#Eval("ToplantiAdi") %></td>
-                                                            <td><%#Eval("IlgiliKisiler") %></td>
-                                                            <td><%#Eval("AtayanKisi") %></td>
-                                                        </tr>
-                                                    </ItemTemplate>
-                                                </asp:ListView>
+                                            <asp:ListView runat="server" ID="lvToplantiAtama">
+                                                <ItemTemplate>
+                                                <tr>
+                                                    <td><%#Eval("ToplantiAdi") %></td>
+                                                    <td><%#Eval("IlgiliKisiler") %></td>
+                                                    <td><%#Eval("AtayanKisi") %></td>
+                                                </tr>
+                                                </ItemTemplate>
+                                            </asp:ListView>
                                             </tbody>
                                         </table>
                                     </div>
@@ -426,95 +451,58 @@
     </div>
 </div>
 
-
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     $(document).ready(function () {
 
-        $("#colum-rendr tbody").on('click', 'tr', function () {
+        $("#row-delete tbody").on('click', 'tr', function () {
 
             var rowData = $(this).children("td").map(function () {
                 return $(this).text();
             }).get();
 
             $("#toplantiId").val(rowData[0]);
-            $("#tbxToplantiAdi").val(rowData[1]);
-            $("#taToplantiIcerigi").val(rowData[2]);
-            $("#tbxToplantiTarihi").val(rowData[3]);
-            $("#tbxToplantiSaati").val(rowData[4]);
-            $("#tbxToplantiYeri").val(rowData[5]);
+            $("#toplantiAdi").val(rowData[1]);
+            $("#toplantiIcerigi").val(rowData[2]);
+            $("#toplantiTarihi").val(rowData[3]);
+            $("#toplantiSaati").val(rowData[4]);
+            $("#toplantiYeri").val(rowData[5]);
         });
 
-        $("#dom-jqry tbody").on('click', 'tr', function () {
+        $("#order-table tbody").on('click', 'tr', function () {
 
             var rowData = $(this).children("td").map(function () {
                 return $(this).text();
             }).get();
 
+
             $("#toplantiDetayId").val(rowData[0]);
-            $("#selectToplantiDetayTa").val(rowData[2]).trigger("change");
+            $("#selectToplantiDetayTA").val(rowData[2]).trigger("change");
             $("#inlineRadio1").val(rowData[3]);
             $("#toplantiSonAlKarar").val(rowData[4]);
-            console.log(rowData);
+            console.log(rowData)
 
         });
+
+        $("#toplantiTemizle ").on('click', function () {
+
+            $("#toplantiId").val("");
+            $("#toplantiAdi").val("");
+            $("#toplantiIcerigi").val("");
+            $("#toplantiTarihi").val("");
+            $("#toplantiSaati").val("");
+            $("#toplantiYeri").val("");
+        });
+
+        $("#ToplantiDetayTemizle ").on('click', function () {
+
+            $("#toplantiDetayId").val("");
+            $("#selectToplantiDetayTA").val("").trigger("change");
+            $("#inlineRadio1").val("");
+            $("#toplantiSonAlKarar").val("");
+            
+
+        });
+
     });
-</script>
-
-<script>
-
-    var toplantiDetayTemizle = function () {
-        $("#toplantiDetayId").val("");
-        $("#selectToplantiDetayTa").val("").trigger("change");
-        $("#inlineRadio1").val("");
-        $("#toplantiSonAlKarar").val("");
-
-    };
-
-    var toplantiTemizle = function () {
-        $("#toplantiId").val("");
-        $("#tbxToplantiAdi").val("");
-        $("#taToplantiIcerigi").val("");
-        $("#tbxToplantiTarihi").val("");
-        $("#tbxToplantiSaati").val("");
-        $("#tbxToplantiYeri").val("");
-
-    };
-
-    window.onload = function () {
-        var seconds = 5;
-        setTimeout(function () {
-            document.getElementById("<%=lblSonuc.ClientID %>").style.display = "none";
-        },
-            seconds * 1000);
-    }
-
-
-</script>
-
-
-<link href="/Site/css/fSelect.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="/Site/js/fSelect.js"></script>
-<script>
-        (function ($) {
-            $(function () {
-                window.fs_test = $('.test').fSelect();
-            });
-        })(jQuery);
-
-</script>
-
-<script>
-
-    var ta = document.querySelector('#tbxIlgiliKisiler');
-
-
-    $('#selectKisiler').change(function () {
-        var selectedValues = $(this).val();
-        ta.innerText = selectedValues;
-    });
-    
-
 </script>

@@ -1,35 +1,41 @@
-﻿using GorevYonetimSistemi.EntitySiniflar;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using GorevYonetimSistemi.EntitySiniflar;
 using GorevYonetimSistemi.VeriKatmani;
-using System;
 
 namespace GorevYonetimSistemi.Proje.User_Kontrol
 {
     public partial class UserGorev : System.Web.UI.UserControl
     {
-        private IslemlerDal<Gorev> _gorevDal = new IslemlerDal<Gorev>();
-        private MetotDal _metotDal = new MetotDal();
-        IslemlerDal<Atama> _gorevAtamaDal=new IslemlerDal<Atama>();
-        IslemlerDal<Kullanici> _kullaniciDal=new IslemlerDal<Kullanici>();
-
+        IslemlerDal<Gorev> _gorevDal = new IslemlerDal<Gorev>();
+        MetotDal _metotDal = new MetotDal();
+        IslemlerDal<Toplanti> _toplantiDal=new IslemlerDal<Toplanti>();
+        IslemlerDal<Atama> _gorevAtamaDal = new IslemlerDal<Atama>();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 GorevListele();
                 GorevAtamaListele();
-                KisileriListele();
+                ToplantiListele();
             }
+
         }
 
-        private void KisileriListele()
+        private void ToplantiListele()
         {
-            var kisileriListe = _kullaniciDal.Listele<Kullanici>();
-            selectKisiler.DataSource = kisileriListe;
-            selectKisiler.DataTextField = "Ad";
-            selectKisiler.DataValueField = "KisiId";
-            selectKisiler.DataBind();
-        }
+            var toplantiListe = _toplantiDal.Listele<Toplanti>();
+            selectToplantiAd.DataSource = toplantiListe;
+            selectToplantiAd.DataTextField = "ToplantiAdi";
+            selectToplantiAd.DataValueField = "ToplantiId";
+            selectToplantiAd.DataBind();
 
+          
+        }
 
         private void GorevAtamaListele()
         {
@@ -47,32 +53,61 @@ namespace GorevYonetimSistemi.Proje.User_Kontrol
             selectGorevAtama.DataSource = gorevListe;
             selectGorevAtama.DataTextField = "GorevAdi";
             selectGorevAtama.DataValueField = "GorevId";
-            selectGorevAtama.DataBind();
+
 
         }
 
-        protected void OnServerClick(object sender, EventArgs e)
+        protected void btnGorevSil_OnServerClick(object sender, EventArgs e)
         {
+            _gorevDal.Sil(Convert.ToInt16(gorevId.Value));
+            GorevListele();
+        }
+     
+
+        protected void btnGorevKaydet_OnServerClick(object sender, EventArgs e)
+        {
+            
+           
+            _gorevDal.Ekle(new Gorev
+            {
+                GorevAdi = gorevAdi.Value,
+                GorevIcerigi = gorevIcerik.Value,
+                Durum = false,
+                FkToplantiId = Convert.ToInt32(selectToplantiAd.Value),
+                
+
+
+            });
+            GorevListele();
+            GorevListele();
+
+        }
+        protected void btnGorevGuncelle_OnServerClick(object sender, EventArgs e)
+        {
+            _gorevDal.Guncelle(new Gorev
+            {
+                GorevId = int.Parse(gorevId.Value),
+                GorevAdi = gorevAdi.Value,
+                GorevIcerigi = gorevIcerik.Value,
+                Durum = false,
+                FkToplantiId = Convert.ToInt16(selectToplantiAd.Value),
+            });
+            GorevListele();
         }
 
         protected void btnGorevAtamaKaydet_OnServerClick(object sender, EventArgs e)
         {
+           
+        }
+
+        protected void btnGorevAtamaSil_OnServerClick(object sender, EventArgs e)
+        {
             
-            var atayanKisiId = Session["KullaniciId"];
+        }
 
-            for (int i = 0; i < tbxIlgiliKisiler.Value.Split(',').Length; i++)
-            {
-                _gorevAtamaDal.Ekle(new Atama
-                {
-                   
-                    FkKisiId = Convert.ToInt32(tbxIlgiliKisiler.Value.Split(',')[i]),
-                    FkGorevId = Convert.ToInt32(selectGorevAtama.Value),
-                    FkAtayanKisiId = int.Parse(atayanKisiId.ToString())
-                });
-            }
-
-
-            GorevAtamaListele();
+        protected void btnGorevAtamaGuncelle_OnServerClick(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -186,18 +186,15 @@ $(document).ready(function () {
             drow.row('.selected').remove().draw(!1);
         });
 
-
-        var drow1 = $('#dom-jqry').DataTable();
+        var drow = $('#dom-jqry').DataTable();
         $('#dom-jqry tbody').on('click', 'tr', function () {
             if ($(this).hasClass('selected')) {
                 $(this).removeClass('selected');
             } else {
-                drow1.$('tr.selected').removeClass('selected');
+                drow.$('tr.selected').removeClass('selected');
                 $(this).addClass('selected');
             }
         });
-
-
 
         function format(d) {
             return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
@@ -273,8 +270,7 @@ $(document).ready(function () {
         setTimeout(function () {
             $('#simpletable').DataTable();
         }, 350);
-        $('#order-table').DataTable({ "order": [[3, "desc"]] });
-
+        $('#order-table').DataTable({"order": [[3, "desc"]]});
         $('#multi-colum-dt').DataTable({
             columnDefs: [{targets: [0], orderData: [0, 1]}, {
                 targets: [1],
@@ -288,15 +284,12 @@ $(document).ready(function () {
         $('#scr-vtr-dynamic').DataTable({scrollY: '50vh', scrollCollapse: true, paging: false});
         $('#lang-dt').DataTable({"language": {"decimal": ",", "thousands": "."}});
 
-
-        var cr = $('#colum-rendr').DataTable();
-        $('#colum-rendr tbody').on('click', 'tr', function () {
-            if ($(this).hasClass('selected')) {
-                $(this).removeClass('selected');
-            } else {
-                cr.$('tr.selected').removeClass('selected');
-                $(this).addClass('selected');
-            }
+        $('#colum-rendr').DataTable({
+            "columnDefs": [{
+                "render": function (data, type, row) {
+                    return data + ' (' + row[3] + ')';
+                }, "targets": 0
+            }, {"visible": false, "targets": [3]}]
         });
         $('#multi-table').DataTable({"dom": '<"top"iflp<"clear">>rt<"bottom"iflp<"clear">>'});
         $('#complex-header').DataTable({"columnDefs": [{"visible": false, "targets": -1}]});

@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UserGorev.ascx.cs" ClientIDMode="Static" Inherits="GorevYonetimSistemi.Proje.User_Kontrol.UserGorev" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" ClientIDMode="Static" CodeBehind="UserGorev.ascx.cs" Inherits="GorevYonetimSistemi.Proje.User_Kontrol.UserGorev" %>
 
 <div class="row">
     <div class="col-sm-12">
@@ -6,20 +6,20 @@
         <div class="col-lg-12 order-lg-2">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a href="" data-target="#evrakKayit" data-toggle="tab"
-                        class="nav-link active" >
+                    <a href="" data-target="#gorevKayit" data-toggle="tab"
+                        class="nav-link active">
                         <strong>Görev Kayıt</strong>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="" data-target="#evrakAtama" data-toggle="tab"
+                    <a href="" data-target="#gorevAtama" data-toggle="tab"
                         class="nav-link">
                         <strong>Görev Atamaları</strong>
                     </a>
                 </li>
             </ul>
             <div class="tab-content py-4">
-                <div class="tab-pane active " id="evrakKayit">
+                <div class="tab-pane active " id="gorevKayit">
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="card">
@@ -31,10 +31,10 @@
                                         novalidate>
                                         <div class="form-group row">
                                             <div class="col-sm-4">
-                                                <input type="hidden"
-                                                    class="form-control"
-                                                    name="gorevId"
-                                                    id="gorevId" runat="server" />
+                                                <input runat="server" type="hidden"
+                                                       class="form-control"
+                                                       name="gorevId"
+                                                       id="gorevId"/>
                                                 <span class="messages"></span>
                                             </div>
                                         </div>
@@ -43,10 +43,7 @@
                                                 Toplantı Adı
                                             </label>
                                             <div class="col-sm-4">
-                                                <select class="js-example-data-array" style="width: 100%;">
-                                                    <option value="Seciniz">Seçiniz Lorem ipsum dolor sit amet.</option>
-                                                    <option value="1">Toplantı 1</option>
-                                                    <option value="1">Toplantı 2 </option>
+                                                <select class="js-example-data-array" style="width: 100%;" runat="server" id="selectToplantiAd">
                                                 </select>
                                             </div>
                                         </div>
@@ -56,10 +53,10 @@
                                 Adı
                                             </label>
                                             <div class="col-sm-4">
-                                                <input type="text"
-                                                    class="form-control max-width"
-                                                    name="gorevAdi"
-                                                    id="gorevAdi" runat="server" ClientIDMode="Static" />
+                                                <input type="text" runat="server"
+                                                       class="form-control max-width"
+                                                       name="gorevAdi"
+                                                       id="gorevAdi"/>
                                                 <span class="messages"></span>
                                             </div>
                                         </div>
@@ -69,9 +66,9 @@
                                 İçeriği
                                             </label>
                                             <div class="col-sm-4">
-                                                <textarea name="gorevIcerik" id="gorevIcerik" cols="70"
+                                                <textarea runat="server" name="gorevIcerik" id="gorevIcerik" cols="70"
                                                     rows="10"
-                                                    class="form-control max-width" runat="server"></textarea>
+                                                    class="form-control max-width"/>
                                                 <span class="messages"></span>
                                             </div>
                                         </div>
@@ -81,7 +78,7 @@
                                                 <input type="file"
                                                     class="form-control max-width"
                                                     name="gorev"
-                                                    id="gorev" runat="server" />
+                                                    id="gorev">
                                                 <span class="messages"></span>
                                             </div>
                                         </div>
@@ -91,10 +88,10 @@
                                 Tarih
                                             </label>
                                             <div class="col-sm-4">
-                                                <input type="text"
-                                                    class="form-control max-width"
-                                                    name="sonTarih"
-                                                    id="sonTarih" runat="server" />
+                                                <input type="text" runat="server"
+                                                       class="form-control max-width"
+                                                       name="sonTarih"
+                                                       id="sonTarih"/>
                                                 <span class="messages"></span>
                                             </div>
                                         </div>
@@ -104,24 +101,23 @@
                                 Saat
                                             </label>
                                             <div class="col-sm-4">
-                                                <input type="text"
-                                                    class="form-control max-width"
-                                                    name="sonSaat"
-                                                    id="sonSaat" runat="server" />
+                                                <input type="text" runat="server"
+                                                       class="form-control max-width"
+                                                       name="sonSaat"
+                                                       id="sonSaat"/>
                                                 <span class="messages"></span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-2"></label>
                                             <div class="col-sm-6">
-                                                <button type="submit"
-                                                    class="btn btn-primary m-b-0" runat="server" onserverclick="OnServerClick">
+                                                <button type="button" runat="server" id="btnGorevKaydet" class="btn btn-primary m-b-0" OnServerClick="btnGorevKaydet_OnServerClick">
                                                     Kaydet
                                                 </button>
-                                                <button class="btn waves-effect waves-light btn-danger btn-square">
+                                                <button runat="server" id="btnGorevSil" class="btn waves-effect waves-light btn-danger btn-square" OnServerClick="btnGorevSil_OnServerClick">
                                                     Sil
                                                 </button>
-                                                <button class="btn waves-effect waves-light btn-warning btn-square">
+                                                <button runat="server" id="btnGorevGuncelle" class="btn waves-effect waves-light btn-warning btn-square" OnServerClick="btnGorevGuncelle_OnServerClick">
                                                     Güncelle
                                                 </button>
                                                 <button id="GorevEkleTemizle" class="btn waves-effect waves-light btn-secondary btn-square">
@@ -144,9 +140,9 @@
                                                 <tr>
 
                                                     <th hidden>Görev ID</th>
+                                                    <th>Toplantı Adı</th>
                                                     <th>Görev Adı</th>
                                                     <th>Görev İçeriği</th>
-                                                    <th>Toplantı Adı</th>
                                                     <th>Son Tarih</th>
                                                     <th>Son Saat</th>
                                                 </tr>
@@ -157,11 +153,12 @@
                                                     <ItemTemplate>
                                                         <tr>
                                                             <td hidden><%#Eval("GorevId") %></td>
+                                                            <td><%#Eval("Toplanti.ToplantiAdi") %></td>
                                                             <td><%#Eval("GorevAdi") %></td>
                                                             <td><%#Eval("GorevIcerigi") %></td>
-                                                            <td></td>
                                                             <td><%#Eval("SonTarihSaat","{0:dd/MM/yyyy}") %></td>
                                                             <td><%#Eval("SonTarihSaat","{0:hh.mm tt}") %></td>
+
                                                         </tr>
                                                     </ItemTemplate>
                                                 </asp:ListView>
@@ -173,30 +170,20 @@
                         </div>
                     </div>
                     <!--/row-->
+
                 </div>
-                <div class="tab-pane " id="evrakAtama">
+                <div class="tab-pane " id="gorevAtama">
                     <div class="row">
                         <div class="col-sm-12 ">
                             <div class="card">
                                 <div class="card-block">
-                                    <div id="main">
+                                    <form id="main" method="post"
+                                        novalidate>
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Görev</label>
-                                            <div class="col-sm-4">
+                                            <div class="col-sm-4"> 
                                                 <select runat="server" id="selectGorevAtama" class="js-example-data-array ">
-                                                    
                                                 </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <div class="col-sm-4">
-                                                
-                                                <textarea hidden name="tbxIlgiliKisiler" id="tbxIlgiliKisiler"
-                                                    cols="70"
-                                                    rows="10"
-                                                    class="form-control max-width" runat="server"></textarea>
-                                                
-                                                <span class="messages"></span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -205,7 +192,43 @@
                                 Kişiler
                                             </label>
                                             <div class="col-sm-4 col-xl-6 m-b-30">
-                                                <select class="test" multiple id="selectKisiler" runat="server">
+                                                <select id="custom-headers"
+                                                    class="searchable"
+                                                    multiple="multiple">
+                                                    <option value="elem_1"
+                                                        selected>elem 1
+                                                    </option>
+                                                    <option value="elem_2">elem 2
+                                                    </option>
+                                                    <option value="elem_3">elem 3
+                                                    </option>
+                                                    <option value="elem_4"
+                                                        selected>elem 4
+                                                    </option>
+                                                    <option value="elem_5">elem 5
+                                                    </option>
+                                                    <option value="elem_6">elem 6
+                                                    </option>
+                                                    <option value="elem_7">elem 7
+                                                    </option>
+                                                    <option value="elem_8">elem 8
+                                                    </option>
+                                                    <option value="elem_9">elem 9
+                                                    </option>
+                                                    <option value="elem_10">elem 10
+                                                    </option>
+                                                    <option value="elem_11">elem 11
+                                                    </option>
+                                                    <option value="elem_12">elem 12
+                                                    </option>
+                                                    <option value="elem_13">elem 13
+                                                    </option>
+                                                    <option value="elem_14">elem 14
+                                                    </option>
+                                                    <option value="elem_15">elem 15
+                                                    </option>
+                                                    <option value="elem_16">elem 16
+                                                    </option>
                                                 </select>
                                             </div>
                                         </div>
@@ -213,14 +236,13 @@
                                         <div class="form-group row">
                                             <label class="col-sm-2"></label>
                                             <div class="col-sm-6">
-                                                <button type="button" runat="server" id="btnGorevAtamaKaydet"
-                                                    class="btn btn-primary m-b-0" OnServerClick="btnGorevAtamaKaydet_OnServerClick">
+                                                <button type="button" runat="server" id="btnGorevAtamaKaydet" class="btn btn-primary m-b-0" OnServerClick="btnGorevAtamaKaydet_OnServerClick">
                                                     Kaydet
                                                 </button>
-                                                <button class="btn waves-effect waves-light btn-danger btn-square">
+                                                <button runat="server" id="btnGorevAtamaSil" class="btn waves-effect waves-light btn-danger btn-square" OnServerClick="btnGorevAtamaSil_OnServerClick">
                                                     Sil
                                                 </button>
-                                                <button class="btn waves-effect waves-light btn-warning btn-square">
+                                                <button runat="server" id="btnGorevAtamaGuncelle" class="btn waves-effect waves-light btn-warning btn-square" OnServerClick="btnGorevAtamaGuncelle_OnServerClick">
                                                     Güncelle
                                                 </button>
                                                 <button id="GorevAtamaTemizle" class="btn waves-effect waves-light btn-secondary btn-square">
@@ -228,7 +250,7 @@
                                                 </button>
                                             </div>
                                         </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
 
@@ -253,6 +275,7 @@
 
                                                             <td><%#Eval("AtananKisi") %></td>
                                                             <td><%#Eval("AtayanKisi") %></td>
+
                                                         </tr>
                                                     </ItemTemplate>
                                                 </asp:ListView>
@@ -271,18 +294,6 @@
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-<link href="/Site/css/fSelect.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="/Site/js/fSelect.js"></script>
-<script>
-    (function ($) {
-        $(function () {
-            window.fs_test = $('.test').fSelect();
-        });
-    })(jQuery);
-
-</script>
 <script>
     $(document).ready(function () {
 
@@ -292,10 +303,11 @@
                 return $(this).text();
             }).get();
 
+            console.log(rowData);
             $("#gorevId").val(rowData[0]);
-            $("#gorevAdi").val(rowData[1]);
-            $("#gorevIcerik").val(rowData[2]);
-            $("#toplantiAdi").val(rowData[3]).trigger('change');
+            $("#toplantiAdi").val(rowData[1]).trigger('change');
+            $("#gorevAdi").val(rowData[2]);
+            $("#gorevIcerik").val(rowData[3]);
             $("#sonTarih").val(rowData[4]);
             $("#sonSaat").val((rowData[5]));
 
@@ -307,11 +319,14 @@
                 return $(this).text();
             }).get();
 
+
+
             $("#productselectname").val(rowData[0]).trigger("change");
             $("#productfeature").val(rowData[1]).trigger("change");
             $("#featurevalue").val(rowData[2]);
 
         });
+
 
         $("#GorevAtamaTemizle").on('click', function () {
 
@@ -332,15 +347,8 @@
 
         });
 
+
+        
+
     });
-</script>
-<script>
-    var ta = document.querySelector('#tbxIlgiliKisiler');
-
-
-    $('#selectKisiler').change(function () {
-        var selectedValues = $(this).val();
-        ta.innerText = selectedValues;
-    });
-
 </script>
