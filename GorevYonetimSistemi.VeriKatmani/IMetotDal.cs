@@ -13,5 +13,8 @@ namespace GorevYonetimSistemi.VeriKatmani
         List<GorevAtama> GorevAtama();
         List<ToplantiDetayModel> ToplantiDetay ();
         List<ToplantiAtamaModel> ToplantiAtama();
+        List<KullaniciModel> KullaniciListele();
+
+
     }
 }

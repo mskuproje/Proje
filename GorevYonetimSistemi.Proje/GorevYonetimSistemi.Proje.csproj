@@ -79,6 +79,7 @@
     <Content Include="Admin\AdminBildirim.aspx" />
     <Content Include="Admin\AdminBildirimDetay.aspx" />
     <Content Include="Admin\AdminGorev.aspx" />
+    <Content Include="Admin\AdminKullaniciKayit.aspx" />
     <Content Include="Admin\AdminToplanti.aspx" />
     <Content Include="Site\css\fSelect.css" />
     <Content Include="Site\Default.aspx" />
@@ -2289,6 +2290,13 @@
     <Compile Include="Admin\AdminGorev.aspx.designer.cs">
       <DependentUpon>AdminGorev.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\AdminKullaniciKayit.aspx.cs">
+      <DependentUpon>AdminKullaniciKayit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdminKullaniciKayit.aspx.designer.cs">
+      <DependentUpon>AdminKullaniciKayit.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\AdminToplanti.aspx.cs">
       <DependentUpon>AdminToplanti.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2307,24 +2315,28 @@
     <Compile Include="obj\Release\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
     <Compile Include="Ogrenci\OgrenciBildirim.aspx.cs">
       <DependentUpon>OgrenciBildirim.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Ogrenci\OgrenciBildirim.aspx.designer.cs">
       <DependentUpon>OgrenciBildirim.aspx</DependentUpon>
     </Compile>
     <Compile Include="Ogrenci\OgrenciBildirimDetay.aspx.cs">
       <DependentUpon>OgrenciBildirimDetay.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Ogrenci\OgrenciBildirimDetay.aspx.designer.cs">
       <DependentUpon>OgrenciBildirimDetay.aspx</DependentUpon>
     </Compile>
     <Compile Include="Ogrenci\OgrenciGorev.aspx.cs">
       <DependentUpon>OgrenciGorev.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Ogrenci\OgrenciGorev.aspx.designer.cs">
       <DependentUpon>OgrenciGorev.aspx</DependentUpon>
     </Compile>
     <Compile Include="Ogrenci\OgrenciToplanti.aspx.cs">
       <DependentUpon>OgrenciToplanti.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Ogrenci\OgrenciToplanti.aspx.designer.cs">
       <DependentUpon>OgrenciToplanti.aspx</DependentUpon>
