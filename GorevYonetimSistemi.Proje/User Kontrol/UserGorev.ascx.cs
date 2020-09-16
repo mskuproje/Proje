@@ -15,6 +15,7 @@ namespace GorevYonetimSistemi.Proje.User_Kontrol
         MetotDal _metotDal = new MetotDal();
         IslemlerDal<Toplanti> _toplantiDal=new IslemlerDal<Toplanti>();
         IslemlerDal<Atama> _gorevAtamaDal = new IslemlerDal<Atama>();
+        private string deneme;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
