@@ -12,16 +12,12 @@ namespace GorevYonetimSistemi.Proje.Admin
     public partial class IdariGorevUnvanlar : Page
     {
         IslemlerDal<IdariGorevUnvan> _idariGorevUnvanDal = new IslemlerDal<IdariGorevUnvan>();
-<<<<<<< HEAD
         SessionKontrol _sessionKontrol = new SessionKontrol();
-=======
->>>>>>> b10536827fdb3bb46838600201ba1783a922abcb
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 IdariGorevUnvanListele();
-<<<<<<< HEAD
                 int kullaniciTurId = Convert.ToInt32(Session["KullaniciTurId"]);
                 string url = HttpContext.Current.Request.Url.AbsolutePath;
                 var kontrolUrl = _sessionKontrol.SessionKontrolu(kullaniciTurId, url);
@@ -29,8 +25,6 @@ namespace GorevYonetimSistemi.Proje.Admin
                 {
                     Response.Redirect(kontrolUrl);
                 }
-=======
->>>>>>> b10536827fdb3bb46838600201ba1783a922abcb
             }
         }
 

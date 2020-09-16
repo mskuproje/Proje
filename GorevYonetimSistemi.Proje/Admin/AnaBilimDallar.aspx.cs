@@ -12,16 +12,12 @@ namespace GorevYonetimSistemi.Proje.Admin
     public partial class AnaBilimDallar : System.Web.UI.Page
     {
         IslemlerDal<AnaBilimDal> _anaBilimDal = new IslemlerDal<AnaBilimDal>();
-<<<<<<< HEAD
         SessionKontrol _sessionKontrol = new SessionKontrol();
-=======
->>>>>>> b10536827fdb3bb46838600201ba1783a922abcb
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 AnaBilimDalListele();
-<<<<<<< HEAD
                 int kullaniciTurId = Convert.ToInt32(Session["KullaniciTurId"]);
                 string url = HttpContext.Current.Request.Url.AbsolutePath;
                 var kontrolUrl = _sessionKontrol.SessionKontrolu(kullaniciTurId, url);
@@ -29,8 +25,6 @@ namespace GorevYonetimSistemi.Proje.Admin
                 {
                     Response.Redirect(kontrolUrl);
                 }
-=======
->>>>>>> b10536827fdb3bb46838600201ba1783a922abcb
             }
         }
 
@@ -61,7 +55,7 @@ namespace GorevYonetimSistemi.Proje.Admin
 
             AnaBilimDalListele();
             lblSonuc.Visible = true;
-            lblSonuc.InnerText = "Ana Bilim Dal Silindi!";
+            lblSonuc.InnerText = "Ana Bilim Dal Silindi";
         }
         protected void btnAbdGuncelle_OnServerClick(object sender, EventArgs e)
         {
