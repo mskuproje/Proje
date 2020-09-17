@@ -28,9 +28,9 @@ namespace GorevYonetimSistemi.Proje.Site
 
         private void KullaniciBildirimListe(int kisiId)
         {
-            var bildirimListe = _metotDal.KisiBildirimListe(kisiId);
-            lvBildirimler.DataSource = bildirimListe;
-            lvBildirimler.DataBind();
+            //var bildirimListe = _metotDal.KisiBildirimListe(kisiId);
+            //lvBildirimler.DataSource = bildirimListe;
+            //lvBildirimler.DataBind();
         }
 
         protected void cikis_OnServerClick(object sender, EventArgs e)
