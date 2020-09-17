@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using GorevYonetimSistemi.EntitySiniflar;
+using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
@@ -52,5 +54,7 @@ namespace GorevYonetimSistemi.VeriKatmani
             _table.Remove(existing);
             _context.SaveChanges();
         }
+
+       
     }
 }

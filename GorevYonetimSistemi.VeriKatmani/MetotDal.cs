@@ -64,6 +64,14 @@ namespace GorevYonetimSistemi.VeriKatmani
             }
         }
 
+        public List<KullaniciModel> KullaniciListele()
+        {
+            using (EntityContext context = new EntityContext())
+            {
+                var kullaniciListe = context.Database.SqlQuery<KullaniciModel>("KullaniciListe").ToList();
 
+                return kullaniciListe;
+            }
+        }
     }
 }

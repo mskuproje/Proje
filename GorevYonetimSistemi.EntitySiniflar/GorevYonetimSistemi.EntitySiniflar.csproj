@@ -59,6 +59,7 @@
     <Compile Include="GorevAtama.cs" />
     <Compile Include="IdariGorevUnvan.cs" />
     <Compile Include="Kullanici.cs" />
+    <Compile Include="KullaniciModel.cs" />
     <Compile Include="KullaniciTur.cs" />
     <Compile Include="KullaniciTurAtama.cs" />
     <Compile Include="KullaniciTurModel.cs" />
